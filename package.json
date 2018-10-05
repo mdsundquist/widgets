@@ -36,5 +36,9 @@
     "survey-vue": "^1.0.18",
     "virtual-module-webpack-plugin": "^0.3.0",
     "webpack": "^3.6.0"
+  },
+  "dependencies": {
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0"
   }
 }

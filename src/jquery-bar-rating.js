@@ -2,7 +2,7 @@ function init(Survey, $) {
   $ = $ || window.$;
   var widget = {
     name: "barrating",
-    title: "Bar rating",
+    title: "Bar rating (show value)",
     iconName: "icon-barrating",
     widgetIsLoaded: function() {
       return typeof $ == "function" && !!$.fn.barrating;
@@ -32,7 +32,7 @@ function init(Survey, $) {
       });
       Survey.JsonObject.metaData.addProperty("barrating", {
         name: "ratingTheme",
-        default: "css-stars",
+        default: "bars-movie",
         choices: [
           "fontawesome-stars",
           "css-stars",
@@ -45,7 +45,11 @@ function init(Survey, $) {
           "bootstrap-stars",
           "fontawesome-stars-o"
         ]
-      });
+        });
+        Survey.JsonObject.metaData.addProperty("barrating", {
+            name: "showSelectedRating:boolean",
+            default: true
+        });
     },
     afterRender: function(question, el) {
       var $el = $(el).is("select") ? $(el) : $(el).find("select");
@@ -53,7 +57,7 @@ function init(Survey, $) {
         theme: question.ratingTheme,
         initialRating: question.value,
         showValues: question.showValues,
-        showSelectedRating: false,
+        showSelectedRating: question.showSelectedRating,
         onSelect: function(value, text) {
           question.value = value;
         }
